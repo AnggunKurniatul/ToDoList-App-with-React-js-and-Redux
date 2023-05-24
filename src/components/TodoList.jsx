@@ -38,13 +38,13 @@ function TodoList(){
             <h1 style={{textAlign : "center"}}>What's the plan for today</h1>
             <form onSubmit={handleSubmit} style={{display: "flex", justifyContent: "center", margin: "10px 0px"}}>
                 <input type="text" placeholder="What to do" value={inputNewTodo} onChange={e => setInputNewTodo(e.target.value)} style={{width:"300px"}} />
-                <button style={{backgroundColor: "blue", color: "white", border: "none", width: "50px", height: "40px"}}><b>Add</b></button>
+                <button style={{cursor:"pointer", backgroundColor: "blue", color: "white", border: "none", width: "50px", height: "40px"}}><b>Add</b></button>
                 {/* <button onClick={() => reset()}>reset</button> */}
             </form>
             <div style={{display: "flex", justifyContent: "center", gap: "10px", margin: "10px"}}>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button style={{cursor:"pointer", width: "90px", height: "30px", borderRadius: "10px"}}>All</button>
+                <button style={{cursor:"pointer", width: "90px", height: "30px", borderRadius: "10px"}}>Active</button>
+                <button style={{cursor:"pointer", width: "90px", height: "30px", borderRadius: "10px"}}>Completed</button>
             </div>
 
             {isLoading && <span style={{display: "flex", justifyContent: "center"}}>Your Todo List...</span>}
@@ -52,12 +52,12 @@ function TodoList(){
             {todos.length > 0 && todos.map(item => (
                 <div key={item.id} style={{display: "flex", justifyContent: "space-between", padding: "5px 130px"}}>
                     <div >
-                        <input id="check" type="checkbox" />
+                        <input id="check" type="checkbox" style={{cursor:"pointer"}}/>
                         <span>{item.title} </span>
                     </div>
                     <div >
-                        <button>edit</button>
-                        <button>delete</button>
+                        <button style={{cursor:"pointer"}}>edit</button>
+                        <button style={{cursor:"pointer"}}>delete</button>
                     </div>
                 </div>
             ))}
