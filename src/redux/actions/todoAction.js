@@ -1,8 +1,23 @@
 export const ADD_TODO_LIST = "ADD_TODO_LIST"
+export const ALL = "ALL"
+export const ACTIVE = "ACTIVE"
+export const COMPLETED = "COMPLETED"
 
-export const addTodoList = (todo) => ({
+export const addTodoList = (item) => ({
     type : ADD_TODO_LIST,
-    payload : todo
+    payload : item
+})
+
+export const all = () => ({
+    type : ALL
+})
+
+export const active = () => ({
+    type : ACTIVE
+})
+
+export const completed = () => ({
+    type : COMPLETED
 })
 
 // import axios from "axios";

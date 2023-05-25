@@ -1,4 +1,4 @@
-import { ADD_TODO_LIST } from "../actions/todoAction"
+import { ACTIVE, ADD_TODO_LIST, ALL, COMPLETED } from "../actions/todoAction"
 
 const initialState = {
     todos : []
@@ -10,6 +10,21 @@ const todoReducer = (state = initialState, action) => {
             return{
                 ...state,
                 todos: [...state.todos, action.payload]
+            }
+        case ALL:
+            return{
+                ...state,
+                filter : "ALL"
+            }
+        case ACTIVE:
+            return{
+                ...state,
+                filter : "ACTIVE"
+            }
+        case COMPLETED:
+            return{
+                ...state,
+                filter : "COMPLETED"
             }
         default: return state
     }
