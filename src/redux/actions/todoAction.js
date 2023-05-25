@@ -1,35 +1,35 @@
-import axios from "axios";
+// import axios from "axios";
 
-export const FETCHING_API = 'FETCHING_API'
-export const GET_TODO_SUCCESS = 'GET_TODO_SUCCES'
+// export const FETCHING_API = 'FETCHING_API'
+// export const GET_TODO_SUCCESS = 'GET_TODO_SUCCES'
 
-const fetchingApi = () => {
-    return{
-        type: FETCHING_API
-    }
-}
+// const fetchingApi = () => {
+//     return{
+//         type: FETCHING_API
+//     }
+// }
 
-const getTodoSuccess = (payload) => {
-    return{
-        type: GET_TODO_SUCCESS,
-        payload
-    }
-}
+// const getTodoSuccess = (payload) => {
+//     return{
+//         type: GET_TODO_SUCCESS,
+//         payload
+//     }
+// }
 
-export const getTodo = () => {
-    return async (dispatch) => {
-        dispatch(fetchingApi())
+// export const getTodo = () => {
+//     return async (dispatch) => {
+//         dispatch(fetchingApi())
 
-        const linkApi = "https://6453e133c18adbbdfeaa2b38.mockapi.io/api/v1/todo"
-        const result = await axios(linkApi)
+//         const linkApi = "https://6453e133c18adbbdfeaa2b38.mockapi.io/api/v1/todo"
+//         const result = await axios(linkApi)
 
-        dispatch(getTodoSuccess(result.data))
-    }
-}
+//         dispatch(getTodoSuccess(result.data))
+//     }
+// }
 
-export const addTodo = (newTodoList) => async (dispatch) => {
-    const linkApi = "https://6453e133c18adbbdfeaa2b38.mockapi.io/api/v1/todo"
-    await axios.post(linkApi, newTodoList)
+// export const addTodo = (newTodoList) => async (dispatch) => {
+//     const linkApi = "https://6453e133c18adbbdfeaa2b38.mockapi.io/api/v1/todo"
+//     await axios.post(linkApi, newTodoList)
     
-    dispatch(getTodo())
-}
+//     dispatch(getTodo())
+// }
