@@ -1,3 +1,10 @@
+export const ADD_TODO_LIST = "ADD_TODO_LIST"
+
+export const addTodoList = (todo) => ({
+    type : ADD_TODO_LIST,
+    payload : todo
+})
+
 // import axios from "axios";
 
 // export const FETCHING_API = 'FETCHING_API'

@@ -1,3 +1,20 @@
+import { ADD_TODO_LIST } from "../actions/todoAction"
+
+const initialState = {
+    todos : []
+}
+
+const todoReducer = (state = initialState, action) => {
+    switch(action.type){
+        case ADD_TODO_LIST:
+            return{
+                ...state,
+                todos: [...state.todos, action.payload]
+            }
+        default: return state
+    }
+}
+
 // import { FETCHING_API, GET_TODO_SUCCESS } from "../actions/todoAction"
 
 // const initialState = {
