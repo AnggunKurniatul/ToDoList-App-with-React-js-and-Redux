@@ -3,7 +3,7 @@
 // import { addTodo, getTodo } from "../redux/actions/todoAction"
 
 import { useState } from "react"
-import { ACTIVE, ALL, COMPLETED, active, addTodoList, all, completed } from "../redux/actions/todoAction"
+import { ACTIVE, ALL, COMPLETED, active, addTodoList, all, checkboxTodoList, completed } from "../redux/actions/todoAction"
 import { useDispatch, useSelector } from "react-redux"
 
 function TodoList(){
@@ -41,6 +41,10 @@ function TodoList(){
 
     const handleCompleted = () => {
         dispatch(completed())
+    }
+
+    const handleCheckbox = (id) => {
+        dispatch(checkboxTodoList(id))
     }
 
     // const dispatch = useDispatch()
@@ -89,16 +93,16 @@ function TodoList(){
 
             {todos.filter((item) =>{
                 if(filter === "ACTIVE"){
-                    return !item.completed
+                    return !item.isDone
                 }else if(filter == "COMPLETED"){
-                    return item.completed
+                    return item.isDone
                 }else{
                     return true
                 }
             }).map((item) => (
                 <div key={item.id} style={{display: "flex", justifyContent: "space-between", padding: "5px 130px"}}>
                     <div >
-                        <input type="checkbox" style={{cursor:"pointer"}}/>
+                        <input onChange={() => handleCheckbox(item.id)} checked={item.isDone} type="checkbox" style={{cursor:"pointer"}}/>
                         <span>{item.title} </span>
                     </div>
                     <div >
