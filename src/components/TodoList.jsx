@@ -3,7 +3,7 @@
 // import { addTodo, getTodo } from "../redux/actions/todoAction"
 
 import { useState } from "react"
-import { ACTIVE, ALL, COMPLETED, active, addTodoList, all, checkboxTodoList, completed } from "../redux/actions/todoAction"
+import { ACTIVE, ALL, COMPLETED, active, addTodoList, all, checkboxTodoList, completed, deleteTodoList } from "../redux/actions/todoAction"
 import { useDispatch, useSelector } from "react-redux"
 
 function TodoList(){
@@ -23,7 +23,6 @@ function TodoList(){
                     isDone : false
                 })
             )
-            setNewTodoList("")
         }
     }
 
@@ -45,6 +44,10 @@ function TodoList(){
 
     const handleCheckbox = (id) => {
         dispatch(checkboxTodoList(id))
+    }
+
+    const handleDelete = (id) => {
+        dispatch(deleteTodoList(id))
     }
 
     // const dispatch = useDispatch()
@@ -80,9 +83,9 @@ function TodoList(){
     return(
         <>
             <h1 style={{textAlign : "center"}}>What's the plan for today</h1>
-            <form onChange={handleInput} value={newTodoList} onSubmit={handleAdd} style={{display: "flex", justifyContent: "center", margin: "10px 0px"}}>
+            <form onChange={handleInput} value={newTodoList} style={{display: "flex", justifyContent: "center", margin: "10px 0px"}}>
                 <input type="text" placeholder="What to do" style={{width:"300px"}} />
-                <button style={{cursor:"pointer", backgroundColor: "blue", color: "white", border: "none", width: "50px", height: "40px"}}><b>Add</b></button>
+                <button onClick={handleAdd} style={{cursor:"pointer", backgroundColor: "blue", color: "white", border: "none", width: "50px", height: "40px"}}><b>Add</b></button>
                 {/* <button onClick={() => reset()}>reset</button> */}
             </form>
             <div style={{display: "flex", justifyContent: "center", gap: "10px", margin: "10px"}}>
@@ -107,7 +110,7 @@ function TodoList(){
                     </div>
                     <div >
                         <button style={{cursor:"pointer"}}>edit</button>
-                        <button style={{cursor:"pointer"}}>delete</button>
+                        <button onClick={() => handleDelete(item.id)} style={{cursor:"pointer"}}>delete</button>
                     </div>
                 </div>
             ))}

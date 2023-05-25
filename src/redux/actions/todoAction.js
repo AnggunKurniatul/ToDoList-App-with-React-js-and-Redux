@@ -3,6 +3,7 @@ export const ALL = "ALL"
 export const ACTIVE = "ACTIVE"
 export const COMPLETED = "COMPLETED"
 export const CHECKBOX_TODO_LIST = "CHECKBOX_TODO_LIST"
+export const DELETE_TODO_LIST = "DELETE_TODO_LIST"
 
 export const addTodoList = (item) => ({
     type : ADD_TODO_LIST,
@@ -23,6 +24,11 @@ export const completed = () => ({
 
 export const checkboxTodoList = (id) => ({
     type : CHECKBOX_TODO_LIST,
+    payload : id
+})
+
+export const deleteTodoList = (id) => ({
+    type : DELETE_TODO_LIST,
     payload : id
 })
 
