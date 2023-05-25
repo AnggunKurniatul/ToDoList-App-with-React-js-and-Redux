@@ -1,4 +1,4 @@
-import { ACTIVE, ADD_TODO_LIST, ALL, CHECKBOX_TODO_LIST, COMPLETED, DELETE_TODO_LIST } from "../actions/todoAction"
+import { ACTIVE, ADD_TODO_LIST, ALL, CHECKBOX_TODO_LIST, COMPLETED, DELETE_TODO_LIST, EDIT_TODO_LIST } from "../actions/todoAction"
 
 const initialState = {
     todos : []
@@ -36,31 +36,13 @@ const todoReducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.filter((item) => item.id !== action.payload)
             }
+        case EDIT_TODO_LIST:
+            return{
+                ...state,
+                todos: state.todos.map((item) => (item.id === action.payload.id ? {...item, title: action.payload.title} : item))
+            }
         default: return state
     }
 }
-
-// import { FETCHING_API, GET_TODO_SUCCESS } from "../actions/todoAction"
-
-// const initialState = {
-//     todos: [],
-//     isLoading: false
-// }
-
-// const todoReducer = (state = initialState, action) => {
-//     switch(action.type){
-//         case FETCHING_API:
-//             return{
-//                 ...state,
-//                 isLoading: true
-//             }
-//         case GET_TODO_SUCCESS:
-//             return{
-//                 isLoading: false,
-//                 todos: [...action.payload]
-//             }
-//         default: return state
-//     }
-// }
 
 export default todoReducer
