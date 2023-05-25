@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { active, addTodoList, all, checkboxTodoList, completed, deleteTodoList, editTodoList } from "../redux/actions/todoAction"
 import { useDispatch, useSelector } from "react-redux"
+import "../css/TodoList.css"
 
 function TodoList(){
     const [newTodoList, setNewTodoList] = useState("")
@@ -72,15 +73,15 @@ function TodoList(){
 
     return(
         <>
-            <h1>What's the plan for today</h1>
-            <form onChange={handleInput} value={newTodoList} >
+            <h1 id="title">What's the plan for today</h1>
+            <form id="form" onChange={handleInput} value={newTodoList} >
                 <input type="text" placeholder="What to do" />
                 <button onClick={handleAdd} ><b>Add</b></button>
             </form>
-            <div>
-                <button onClick={handleAll} >All</button>
-                <button onClick={handleActive} >Active</button>
-                <button onClick={handleCompleted} >Completed</button>
+            <div id="filter">
+                <button className="active" onClick={handleAll} style={filter === "ALL" ? {backgroundColor: "#00ABB3"} : {backgroundColor: "#9DB2BF"}}>All</button>
+                <button className="active" onClick={handleActive} style={filter === "ACTIVE" ? {backgroundColor: "#00ABB3"} : {backgroundColor: "#9DB2BF"}}>Active</button>
+                <button className="active" onClick={handleCompleted} style={filter === "COMPLETED" ? {backgroundColor: "#00ABB3"} : {backgroundColor: "#9DB2BF"}}>Completed</button>
             </div>
 
             {todos.filter((item) =>{
@@ -93,22 +94,23 @@ function TodoList(){
                 }
             }).map((item) => (
                 <div key={item.id}>
-                    
-                        <input onChange={() => handleCheckbox(item.id)} checked={item.isDone} type="checkbox"/>
+                    <div id="todolist">
+                        <input id="check" onChange={() => handleCheckbox(item.id)} checked={item.isDone} type="checkbox"/>
                         {editId === item.id ? (
-                            <div>
+                            <div id="edit">
                                 <input type="text" value={editTitle} onChange={handleInputEdit} />
-                                <button onClick={updateTodoList}>Update</button>
+                                <button className="buttonlist" onClick={updateTodoList}>Update</button>
                             </div>
                         ) : (
-                            <div >
+                            <div id="listTodo">
                                 <span>{item.title} </span>
                                 <div>
-                                    <button onClick={() => handleEdit(item)} >edit</button>
-                                    <button onClick={() => handleDelete(item.id)} >delete</button>
+                                    <button className="buttonlist" onClick={() => handleEdit(item)} >edit</button>
+                                    <button className="buttonlist" onClick={() => handleDelete(item.id)} >delete</button>
                                 </div>
                             </div>
                         )}
+                    </div>
                 </div>
             ))}
         </>
