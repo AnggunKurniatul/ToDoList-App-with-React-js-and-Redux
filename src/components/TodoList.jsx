@@ -2,7 +2,32 @@
 // import { useDispatch, useSelector } from "react-redux"
 // import { addTodo, getTodo } from "../redux/actions/todoAction"
 
+import { useState } from "react"
+import { addTodoList } from "../redux/actions/todoAction"
+import { useDispatch } from "react-redux"
+
 function TodoList(){
+    const [newTodoList, setNewTodoList] = useState("")
+    const dispatch = useDispatch()
+    
+
+    const handleAdd = () => {
+        if (newTodoList.trim() !== ""){
+            dispatch(
+                addTodoList({
+                    id : Math.random(),
+                    title : newTodoList,
+                    isDone : false
+                })
+            )
+            setNewTodoList("")
+        }
+    }
+
+    const handleInput = (e) => {
+        setNewTodoList(e.target.value)
+    }
+
     // const dispatch = useDispatch()
     // const {todos, isLoading} = useSelector(state => state.todoReducer)
 
@@ -36,7 +61,7 @@ function TodoList(){
     return(
         <>
             <h1 style={{textAlign : "center"}}>What's the plan for today</h1>
-            <form style={{display: "flex", justifyContent: "center", margin: "10px 0px"}}>
+            <form onChange={handleInput} value={newTodoList} onSubmit={handleAdd} style={{display: "flex", justifyContent: "center", margin: "10px 0px"}}>
                 <input type="text" placeholder="What to do" style={{width:"300px"}} />
                 <button style={{cursor:"pointer", backgroundColor: "blue", color: "white", border: "none", width: "50px", height: "40px"}}><b>Add</b></button>
                 {/* <button onClick={() => reset()}>reset</button> */}
@@ -46,6 +71,8 @@ function TodoList(){
                 <button style={{cursor:"pointer", width: "90px", height: "30px", borderRadius: "10px"}}>Active</button>
                 <button style={{cursor:"pointer", width: "90px", height: "30px", borderRadius: "10px"}}>Completed</button>
             </div>
+
+
 
             {/* {isLoading && <span style={{display: "flex", justifyContent: "center"}}>Your Todo List...</span>}
 
